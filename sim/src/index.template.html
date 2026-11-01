@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>UFO-25 · LED show sim</title>
+<!--
+  UFO-25 (Halloween 2026) LED show simulator, v2. One self-contained file: three.js and the print art are inlined,
+  so it opens by double-click, offline. BUILT FILE: edit src/show.js (the show, pure functions that port to the
+  firmware ShowEngine) and src/main.js (the scene), then `npm run build`.
+  Geometry is the real saucer: octagon 36" outer sides / 12" hub sides, hub raised 6 3/8", belly drops 4" to an
+  8" beam port; 24" dome on a 4" riser; hung in a stand-in yard,
+  tilted 12 deg toward the viewer. Pixels: rim 500, cockpit ring 100 + 2 eyes, belly spokes 8 x 60, iris disc 241.
+  Plus the white beam spot, the fog-machine relay, 2 UV floods.
+-->
+<style>
+  :root { --y: #FFE900; --p: #FF3EB5; --k: #0b0b0d; }
+  html, body { margin: 0; height: 100%; background: var(--k); color: #eee; overflow: hidden;
+    font: 13px/1.35 "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-user-select: none; user-select: none; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; touch-action: none; display: block; }
+  .hud { position: fixed; left: 12px; top: 10px; pointer-events: none; }
+  .hud h1 { margin: 0; font: 800 20px/1 "Avenir Next", "Helvetica Neue", sans-serif; letter-spacing: -.2px; }
+  .hud h1 b { background: var(--y); color: #111; padding: 0 5px; }
+  .state { margin-top: 7px; font: 700 11px/1 "SF Mono", Menlo, monospace; letter-spacing: 1.4px; text-transform: uppercase; }
+  .state i { font-style: normal; color: var(--y); }
+  .hint { margin-top: 5px; font: 11px/1.3 "SF Mono", Menlo, monospace; color: #8a8a8a; }
+  .meter { position: fixed; right: 12px; top: 10px; width: 236px; font: 11px/1.35 "SF Mono", Menlo, monospace;
+    background: rgba(0, 0, 0, .58); padding: 8px 10px; border-left: 3px solid var(--y); pointer-events: none; }
+  .bar { height: 6px; background: #2c2c30; margin: 6px 0 4px; position: relative; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--y); }
+  .bar u { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--p); }
+  .bar s { position: absolute; top: -4px; bottom: -4px; left: 80%; width: 1px; background: #fff; opacity: .55; }
+  .warn { color: var(--p); font-weight: 700; }
+  .mute { color: #8a8a8a; }
+  .wall { position: fixed; left: 50%; top: 12px; transform: translateX(-50%); background: #000; color: var(--y);
+    font: 800 15px/1 "SF Mono", Menlo, monospace; letter-spacing: 3px; padding: 7px 12px; border: 2px solid var(--y);
+    display: none; pointer-events: none; white-space: nowrap; }
+  .wall small { display: block; font: 700 9px/1 "SF Mono", Menlo, monospace; letter-spacing: 1.5px; color: #888; margin-bottom: 4px; }
+  .panel { position: fixed; left: 0; right: 0; bottom: 0; padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    background: rgba(8, 8, 10, .88); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; border-top: 1px solid #222; }
+  .grp { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .grp > span { font: 700 10px/1 "SF Mono", Menlo, monospace; letter-spacing: 1px; text-transform: uppercase; color: #777; margin-right: 3px; }
+  button { font: 700 12px/1 "Helvetica Neue", Helvetica, sans-serif; background: #1b1b1f; color: #eee; border: 1px solid #34343a;
+    padding: 8px 10px; border-radius: 2px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  button.on { background: var(--y); color: #111; border-color: var(--y); }
+  button.go { background: var(--p); color: #111; border-color: var(--p); }
+  input[type=range] { width: 110px; accent-color: #FFE900; }
+  .cap { font: 11px/1 "SF Mono", Menlo, monospace; color: #ccc; min-width: 34px; display: inline-block; }
+  @media (max-width: 640px) {
+    .hint { display: none; }
+    .meter { top: auto; bottom: calc(108px + env(safe-area-inset-bottom)); right: 8px; width: 190px; padding: 5px 7px; font-size: 9.5px; }
+    .wall { top: 58px; font-size: 12px; letter-spacing: 2px; }
+    .hud h1 { font-size: 16px; }
+    .panel { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 4px 12px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+    .grp { flex-wrap: nowrap; }
+    .grp > span { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 8px; }
+    button { padding: 9px 9px; font-size: 12px; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hud">
+  <h1>UFO-25 · <b>LED show sim</b></h1>
+  <div class="state" id="stateLine"></div>
+  <div class="hint">drag to orbit · pinch / scroll to zoom · drag the kid to move them</div>
+</div>
+<div class="meter" id="meter"></div>
+<div class="wall" id="wall"></div>
+<div class="panel" id="panel"></div>
+<script>/*BUNDLE*/</script>
+</body>
+</html>

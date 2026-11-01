@@ -1,0 +1,7 @@
+(version 1)
+# Lens cutouts under the reverse-mount LEDs (Lite-On's land pattern puts the
+# pads right against the cutout; ours keeps 0.2 mm, JLC's routed-edge minimum).
+# The board's outer edges keep the 0.5 mm default. D1-D6 are the LEDs.
+(rule "led lens cutouts"
+  (condition "A.memberOfFootprint('D*') || B.memberOfFootprint('D*')")
+  (constraint edge_clearance (min 0.2mm)))

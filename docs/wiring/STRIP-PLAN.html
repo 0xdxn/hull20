@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UFO 2026: strip plan (what you have, where every LED goes)</title>
+<style>
+  :root { --ink:#111; --paper:#fbfaf6; --rule:#cfcabb; --mute:#6b675c;
+          --v5:#d62728; --data:#14a03c;
+          --rim:#d9a400; --rimB:#8f6c00; --s3:#e0359e; --s4:#8e1f63; --warm:#e8892a; --spare:#b9b4a6; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.5 "Avenir Next","Helvetica Neue",sans-serif; }
+  main { max-width:1100px; margin:0 auto; padding:28px 28px 60px; }
+  h1 { font-size:30px; margin:0 0 4px; letter-spacing:-0.01em; }
+  h1 span { font-weight:400; color:var(--mute); }
+  h2 { font-size:19px; margin:38px 0 8px; padding-top:14px; border-top:1px solid var(--rule); }
+  p { max-width:820px; margin:6px 0; }
+  .tally { font-family:"SF Mono",Menlo,monospace; font-size:13px; color:var(--mute); margin:4px 0 18px; }
+  .tally b { color:var(--ink); }
+  svg { width:100%; height:auto; display:block; background:#fff; border:1px solid var(--rule); }
+  svg text { font-family:"SF Mono",Menlo,monospace; font-size:12px; fill:var(--ink); }
+  svg .t { font-family:"Avenir Next","Helvetica Neue",sans-serif; font-weight:700; font-size:13px; }
+  svg .s { font-size:11px; fill:var(--mute); }
+  svg .w { fill:#fff; }
+  figcaption { font-size:13px; color:var(--mute); margin:6px 0 0; max-width:900px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; margin:8px 0; }
+  th, td { text-align:left; padding:6px 10px 6px 0; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { font-weight:600; color:var(--mute); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+  td.n { font-family:"SF Mono",Menlo,monospace; white-space:nowrap; }
+  .key { display:inline-block; width:14px; height:10px; vertical-align:middle; margin-right:6px; border:1px solid rgba(0,0,0,.25); }
+  ol li, ul li { margin:4px 0; max-width:860px; }
+  .note { border-left:3px solid var(--ink); padding:4px 0 4px 12px; margin:12px 0; max-width:860px; }
+  @media print { body { background:#fff; } h2 { break-before:auto; } figure { break-inside:avoid; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>UFO 2026 · <span>strip plan</span></h1>
+  <div class="tally">5 strips · <b>888 RGB</b> + <b>115 RGBW</b> used · <b>312 RGB</b> + <b>185 RGBW</b> spare · <b>10 cuts</b> · nothing to buy · 2026-10-14</div>
+  <p>What you have and where every LED goes. The underside rim (line B) is dropped. The top rim is one continuous run, and the belly spokes are cut and joined with wire. Your four RGB strips and the RGBW strip were all bench-tested good on 2026-10-14. The wiring page (<code>WIRING.html</code>) carries the same data lines.</p>
+
+  <h2>1 · Five strips, cut by cut</h2>
+  <figure>
+    <svg id="bars" viewBox="0 0 1100 470" role="img" aria-label="The five 300-LED strips as bars, showing which LEDs become the rim, the belly spokes, the cockpit and spares, and where to cut"></svg>
+    <figcaption>Each bar is one 5 m reel at 60 LEDs/m, input end on the left (the arrow on the strip points away from it). ✂ numbers match the checklist in section 5. Grey hatching is spare: leave it on the reel, uncut.</figcaption>
+  </figure>
+
+  <h2>2 · Top rim: one continuous run (data line 1)</h2>
+  <figure>
+    <svg id="top" viewBox="0 0 1100 600" role="img" aria-label="Top view of the saucer: the rim strip runs once around the octagon, clockwise from the aft-left corner, with the joint between strip 1 and strip 2 on face 6"></svg>
+    <figcaption>Seen from above. The strip runs clockwise from the aft flat's left corner (as on the wiring page), 55 LEDs per face, and passes uncut through each corner gap between the 36" channels. Strip 1 plugs into strip 2 with their factory connectors on face 6. Power taps at four corners, as before.</figcaption>
+  </figure>
+
+  <h2>3 · Belly: eight spokes, snaked with wire (data line 3)</h2>
+  <figure>
+    <svg id="belly" viewBox="0 0 1100 600" role="img" aria-label="Belly view: eight spokes, alternately running out and in, joined by long wire jumpers at the rim and short ones at the hub, ending at the iris"></svg>
+    <figcaption>X-ray from above, same orientation as the top view. The data snakes through the spokes: S1 runs centre → edge, a wire runs along the edge to S2, S2 comes back in, a short wire crosses the hub to S3, and so on. S8 ends at the centre and feeds the iris. The firmware already maps this zig-zag.</figcaption>
+  </figure>
+
+  <h2>4 · Four data lines</h2>
+  <table>
+    <tr><th>Line</th><th>Pin</th><th>Runs</th><th>LEDs</th><th>Strip</th></tr>
+    <tr><td class="n">1</td><td class="n">Nano D2 · GPIO5</td><td>top rim, clockwise from the aft-left corner</td><td class="n">440</td><td><span class="key" style="background:var(--rim)"></span>RGB 1 (300) → RGB 2 (140)</td></tr>
+    <tr><td class="n">2</td><td class="n">Nano D3 · GPIO6</td><td>cockpit: the 24" dome lip, from the top junction</td><td class="n">115 RGBW</td><td><span class="key" style="background:var(--warm)"></span>RGBW, 4 bytes per LED, so it gets a line of its own</td></tr>
+    <tr><td class="n">3</td><td class="n">Nano D4 · GPIO7</td><td>spokes S1 → S8 snaked, then the iris disc</td><td class="n">448 + 241 = 689</td><td><span class="key" style="background:var(--s3)"></span>RGB 3 (S1–S5) <span class="key" style="background:var(--s4);margin-left:8px"></span>RGB 4 (S6–S8) · iris: a 241 disc borrowed back from the round eyes</td></tr>
+    <tr><td class="n">4</td><td class="n">Nano D5 · GPIO8</td><td>top junction → portholes P1…P8 → the alien's 2 eye pixels</td><td class="n">128 + 2 = 130</td><td>8 of your 10 porthole rings (2 spare)</td></tr>
+  </table>
+  <p>The longest line (3, 689 LEDs) still sets the frame time, about 48 frames a second. Line 2 carries far fewer LEDs than line B did. At its warmest, though, an RGBW pixel can draw a little more than an RGB one; the 30 A limiter covers it.</p>
+
+  <h2>5 · Cuts and seals</h2>
+  <ol>
+    <li><b>Mark before you cut.</b> Count LEDs from the input end and cut on the copper pads between two LEDs, through the middle of the pads.</li>
+    <li><b>The 10 cuts:</b> ✂1 RGB 2 at 140 (end of the rim) · ✂2–✂6 RGB 3 at 56, 112, 168, 224, 280 (S1–S5) · ✂7–✂9 RGB 4 at 56, 112, 168 (S6–S8) · ✂10 RGBW at 115 (cockpit; measure the lip first, see below).</li>
+    <li><b>20 cut ends get sealed.</b> Where a jumper goes on, solder first, then seal: silicone end cap filled with neutral-cure silicone, or glue-lined heat shrink over the sleeve. The spare pieces' cut ends get sealed too, so the spares stay IP67.</li>
+    <li><b>Jumpers</b> (22 AWG 3-core, #16): 4 at the rim (S1→S2, S3→S4, S5→S6, S7→S8), about 33" each; 3 at the hub (S2→S3, S4→S5, S6→S7), about 5" each; S8 → iris about 7". Leave 2" slack at each end.</li>
+    <li><b>Your heat-shrink-sealed strip</b> is best as RGB 4. Its three spokes sit in belly channels, under the saucer and out of the rain, and most of it stays on the reel as the spare.</li>
+    <li><b>Measure the dome lip before ✂10.</b> 115 LEDs assumes 75.4" (π × 24") at 60/m. Wrap a tape where the strip will actually sit; LEDs = inches × 0.79 (60/m). If the strip turns out to be 30/m, it's half that and the cut moves.</li>
+  </ol>
+  <div class="note"><b>Spares:</b> RGB 2 keeps 160, RGB 4 keeps 132, RGB 3 keeps 20 (312 RGB) and the RGBW keeps 185. A failed spoke or rim face can be swapped on show night. Also spare: the dense 1 m strip in its channel (wand or antenna) and a loose dense 1 m strip. Count its LEDs: 144/m is the usual dense density.</div>
+</main>
+<script>
+const NS = "http://www.w3.org/2000/svg";
+function el(svg, tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  svg.appendChild(e); return e;
+}
+const deg = Math.PI / 180;
+const pts = (a) => a.map((p) => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
+const mid = (a, b, t = 0.5) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+function defs(svg) {
+  const d = el(svg, "defs", {});
+  const pat = document.createElementNS(NS, "pattern");
+  for (const [k, v] of Object.entries({ id: "hatch", width: "6", height: "6", patternUnits: "userSpaceOnUse", patternTransform: "rotate(45)" })) pat.setAttribute(k, v);
+  const bg = document.createElementNS(NS, "rect"); bg.setAttribute("width", "6"); bg.setAttribute("height", "6"); bg.setAttribute("fill", "#efede6"); pat.appendChild(bg);
+  const ln = document.createElementNS(NS, "line"); for (const [k, v] of Object.entries({ x1: 0, y1: 0, x2: 0, y2: 6, stroke: "#b9b4a6", "stroke-width": 2 })) ln.setAttribute(k, v); pat.appendChild(ln);
+  d.appendChild(pat);
+  for (const [id, c] of [["ad", "var(--data)"], ["ak", "#111"]]) {
+    const m = document.createElementNS(NS, "marker");
+    for (const [k, v] of Object.entries({ id, viewBox: "0 0 10 10", refX: "8", refY: "5", markerWidth: "6", markerHeight: "6", orient: "auto-start-reverse" })) m.setAttribute(k, v);
+    const p = document.createElementNS(NS, "path"); p.setAttribute("d", "M0 0 L10 5 L0 10 z"); p.setAttribute("fill", c); m.appendChild(p); d.appendChild(m);
+  }
+}
+
+// ---------- 1 · bars
+(function () {
+  const svg = document.getElementById("bars"); defs(svg);
+  const X0 = 190, W = 840, px = W / 300, H = 34;
+  const rows = [
+    { name: "RGB 1", sub: "IP67", segs: [[0, 300, "var(--rim)", "rim LEDs 1–300 · faces 1–6"]], cuts: [] },
+    { name: "RGB 2", sub: "IP67", segs: [[0, 140, "var(--rim)", "rim 301–440"], [140, 300, "url(#hatch)", "spare 160"]], cuts: [[140, 1]] },
+    { name: "RGB 3", sub: "IP67", segs: [0, 1, 2, 3, 4].map((i) => [i * 56, i * 56 + 56, "var(--s3)", "S" + (i + 1)]).concat([[280, 300, "url(#hatch)", "20"]]), cuts: [[56, 2], [112, 3], [168, 4], [224, 5], [280, 6]] },
+    { name: "RGB 4", sub: "your heat-shrink seal", segs: [0, 1, 2].map((i) => [i * 56, i * 56 + 56, "var(--s4)", "S" + (i + 6)]).concat([[168, 300, "url(#hatch)", "spare 132"]]), cuts: [[56, 7], [112, 8], [168, 9]] },
+    { name: "RGBW", sub: "warm white + RGB", segs: [[0, 115, "var(--warm)", "cockpit lip 115"], [115, 300, "url(#hatch)", "spare 185"]], cuts: [[115, 10]] },
+  ];
+  // scale
+  for (let n = 0; n <= 300; n += 50) {
+    el(svg, "line", { x1: X0 + n * px, y1: 30, x2: X0 + n * px, y2: 36, stroke: "#999" });
+    el(svg, "text", { x: X0 + n * px - (n ? 10 : 3), y: 26, class: "s" }, String(n));
+  }
+  el(svg, "text", { x: X0 + W - 70, y: 14, class: "s" }, "LED number");
+  rows.forEach((r, i) => {
+    const y = 56 + i * 80;
+    el(svg, "text", { x: 24, y: y + 16, class: "t" }, r.name);
+    el(svg, "text", { x: 24, y: y + 31, class: "s" }, r.sub);
+    // input arrow
+    el(svg, "line", { x1: X0 - 46, y1: y + H / 2, x2: X0 - 6, y2: y + H / 2, stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" });
+    el(svg, "text", { x: X0 - 50, y: y + H / 2 - 8, class: "s" }, "in");
+    for (const [a, b, fill, lab] of r.segs) {
+      el(svg, "rect", { x: X0 + a * px, y, width: (b - a) * px, height: H, fill, stroke: "#fff", "stroke-width": 1.5 });
+      const light = fill === "var(--rim)" || fill.includes("hatch") || fill === "var(--warm)";
+      if ((b - a) * px > 30) el(svg, "text", { x: X0 + ((a + b) / 2) * px - lab.length * 3.6, y: y + H / 2 + 4, ...(light ? {} : { class: "w" }) }, lab);
+    }
+    el(svg, "rect", { x: X0, y, width: W, height: H, fill: "none", stroke: "#555", "stroke-width": 1 });
+    for (const [at, k] of r.cuts) {
+      const x = X0 + at * px;
+      el(svg, "line", { x1: x, y1: y - 8, x2: x, y2: y + H + 8, stroke: "#111", "stroke-width": 2, "stroke-dasharray": "3 2" });
+      el(svg, "text", { x: x - 10, y: y + H + 22, class: "t" }, "✂" + k);
+    }
+  });
+})();
+
+// ---------- saucer geometry (inches, from the sim; same as WIRING.html)
+const S = 5.2, CX = 300, CY = 300;
+const RO = 47.04 * S, APO = 43.46 * S, RH = 15.68 * S;
+const oct = (R) => Array.from({ length: 8 }, (_, k) => [CX + R * Math.cos((-112.5 + 45 * k) * deg), CY + R * Math.sin((-112.5 + 45 * k) * deg)]);
+const toward = (p, r) => { const dx = p[0] - CX, dy = p[1] - CY, L = Math.hypot(dx, dy); return [CX + (dx / L) * r, CY + (dy / L) * r]; };
+
+// ---------- 2 · top rim
+(function () {
+  const svg = document.getElementById("top"); defs(svg);
+  el(svg, "text", { x: CX - 62, y: 24, class: "s" }, "AFT");
+  el(svg, "text", { x: CX - 62, y: 588, class: "s" }, "FORE");
+  const V = oct(RO);
+  el(svg, "polygon", { points: pts(V), fill: "#f4f2ea", stroke: "#bbb", "stroke-width": 1 });
+  el(svg, "polygon", { points: pts(oct(RH)), fill: "#ebe8de", stroke: "#ccc", "stroke-width": 1 });
+  // channels: one per face, short of the corners
+  for (let k = 0; k < 8; k++) {
+    const a = V[k], b = V[(k + 1) % 8], c1 = mid(a, b, 0.06), c2 = mid(a, b, 0.94);
+    el(svg, "line", { x1: c1[0], y1: c1[1], x2: c2[0], y2: c2[1], stroke: "#333", "stroke-width": 12, "stroke-linecap": "butt", opacity: 0.18 });
+  }
+  // the strip: continuous, coloured by source; LED n sits on face floor(n/55)
+  const at = (n) => { const k = Math.floor(n / 55) % 8, t = (n % 55) / 55; return mid(V[k], V[(k + 1) % 8], t); };
+  const path = (n0, n1) => { const P = [at(n0)]; for (let n = Math.ceil((n0 + 1) / 55) * 55; n < n1; n += 55) P.push(at(n)); P.push(n1 >= 440 ? V[0] : at(n1)); return P; };
+  el(svg, "polyline", { points: pts(path(0, 300)), fill: "none", stroke: "var(--rim)", "stroke-width": 5, "stroke-linejoin": "round" });
+  el(svg, "polyline", { points: pts(path(300, 440)), fill: "none", stroke: "var(--rimB)", "stroke-width": 5, "stroke-linejoin": "round" });
+  for (let k = 0; k < 8; k++) {
+    const a = V[k], b = V[(k + 1) % 8], m = mid(a, b), o = toward(m, APO + 16);
+    el(svg, "text", { x: o[0] - 4, y: o[1] + 4, class: "s" }, String(k + 1));
+    const p1 = mid(a, b, 0.36), p2 = mid(a, b, 0.5);
+    el(svg, "line", { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" });
+  }
+  // power taps
+  for (const k of [0, 2, 4, 6]) el(svg, "circle", { cx: V[k][0], cy: V[k][1], r: 6, fill: "var(--v5)" });
+  // joint strip 1 -> 2 at LED 300
+  const J = at(300), Jo = toward(J, APO + 46);
+  el(svg, "circle", { cx: J[0], cy: J[1], r: 7, fill: "#fff", stroke: "#111", "stroke-width": 2 });
+  el(svg, "line", { x1: J[0], y1: J[1], x2: Jo[0], y2: Jo[1], stroke: "#111", "stroke-width": 1 });
+  el(svg, "text", { x: Jo[0] - 92, y: Jo[1] + 14 }, "joint: RGB 1 → RGB 2");
+  el(svg, "text", { x: Jo[0] - 92, y: Jo[1] + 28, class: "s" }, "factory plugs, LED 300/301");
+  // start and end at corner 0
+  el(svg, "text", { x: V[0][0] - 150, y: V[0][1] - 24 }, "line 1 DIN · LED 1");
+  el(svg, "text", { x: V[0][0] - 150, y: V[0][1] - 10, class: "s" }, "ends here too: ✂1 at LED 440");
+  // cockpit lip (RGBW) + portholes
+  el(svg, "circle", { cx: CX, cy: CY, r: 13.1 * S, fill: "#fff", stroke: "#bbb", "stroke-width": 1 });
+  el(svg, "circle", { cx: CX, cy: CY, r: 11.9 * S, fill: "none", stroke: "var(--warm)", "stroke-width": 5 });
+  el(svg, "text", { x: CX - 46, y: CY + 4 }, "cockpit lip");
+  el(svg, "text", { x: CX - 46, y: CY + 18, class: "s" }, "115 RGBW · line 2");
+  for (let k = 0; k < 8; k++) {
+    const ang = (-90 + 45 * k) * deg, r = 29 * S;
+    const p = [CX + r * Math.cos(ang), CY + r * Math.sin(ang)];
+    el(svg, "circle", { cx: p[0], cy: p[1], r: 9, fill: "#fff", stroke: "var(--data)", "stroke-width": 3 });
+    el(svg, "text", { x: p[0] + 11, y: p[1] - 9, class: "s" }, "P" + (k + 1));
+  }
+  // legend
+  const L = 680;
+  el(svg, "text", { x: L, y: 70, class: "t" }, "Top rim, data line 1");
+  const leg = [["var(--rim)", "RGB 1: LEDs 1–300 (faces 1 to 6, 25 LEDs in)"], ["var(--rimB)", "RGB 2: LEDs 301–440 (rest of face 6, 7, 8)"]];
+  leg.forEach(([c, t], i) => { el(svg, "rect", { x: L, y: 88 + i * 22, width: 26, height: 8, fill: c }); el(svg, "text", { x: L + 34, y: 96 + i * 22 }, t); });
+  el(svg, "rect", { x: L, y: 136, width: 26, height: 10, fill: "#333", opacity: 0.18 }); el(svg, "text", { x: L + 34, y: 145 }, "36\" channel, one per face (8)");
+  el(svg, "circle", { cx: L + 13, cy: 166, r: 6, fill: "var(--v5)" }); el(svg, "text", { x: L + 34, y: 170 }, "5 V tap (ring bus A), 4 corners");
+  el(svg, "line", { x1: L, y1: 188, x2: L + 26, y2: 188, stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" }); el(svg, "text", { x: L + 34, y: 192 }, "data direction: clockwise");
+  const lines = ["55 LEDs per face, 440 in all.",
+    "The strip bends flat-side round each corner,",
+    "so it crosses the gaps between channels",
+    "without a cut. Only ✂1 at the very end.",
+    "",
+    "Bridge each corner gap with a short piece",
+    "of the channel's diffuser, or a black UV",
+    "zip tie each side of the gap."];
+  lines.forEach((t, i) => el(svg, "text", { x: L, y: 228 + i * 18, class: "s" }, t));
+  el(svg, "text", { x: L, y: 400, class: "t" }, "Also on top");
+  ["cockpit lip: the RGBW strip, 115 LEDs, its own", "line (2) from the top junction", "portholes P1–P8 (line 4), then the 2 eye pixels"].forEach((t, i) => el(svg, "text", { x: L, y: 420 + i * 18, class: "s" }, t));
+})();
+
+// ---------- 3 · belly
+(function () {
+  const svg = document.getElementById("belly"); defs(svg);
+  el(svg, "text", { x: CX - 62, y: 24, class: "s" }, "AFT");
+  el(svg, "text", { x: CX - 62, y: 588, class: "s" }, "FORE");
+  const V = oct(RO);
+  el(svg, "polygon", { points: pts(V), fill: "#f4f2ea", stroke: "#bbb", "stroke-width": 1 });
+  const rOut = RO - 24, rIn = 6.5 * S;
+  for (let k = 0; k < 8; k++) {
+    const outer = toward(V[k], rOut), inner = toward(V[k], rIn);
+    const out = k % 2 === 0;                       // S1, S3, S5, S7 run centre -> edge
+    const [a, b] = out ? [inner, outer] : [outer, inner];
+    const col = k < 5 ? "var(--s3)" : "var(--s4)";
+    // channel under the spoke
+    el(svg, "line", { x1: inner[0], y1: inner[1], x2: outer[0], y2: outer[1], stroke: "#333", "stroke-width": 12, opacity: 0.14 });
+    el(svg, "line", { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: col, "stroke-width": 5 });
+    const m1 = mid(a, b, 0.42), m2 = mid(a, b, 0.58);
+    el(svg, "line", { x1: m1[0], y1: m1[1], x2: m2[0], y2: m2[1], stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" });
+    const lab = toward(V[k], RO * 0.66), off = [(lab[1] - CY) * 0.1, -(lab[0] - CX) * 0.1];
+    el(svg, "text", { x: lab[0] + off[0] - 8, y: lab[1] + off[1] + 4, class: "t" }, "S" + (k + 1));
+    // jumper to the next spoke
+    if (k < 7) {
+      const from = out ? outer : inner, to = toward(V[k + 1], out ? rOut : rIn);
+      el(svg, "line", { x1: from[0], y1: from[1], x2: to[0], y2: to[1], stroke: "#111", "stroke-width": 1.8, "stroke-dasharray": "6 4" });
+      if (out) { const mm = mid(from, to), o = toward(mm, Math.hypot(mm[0] - CX, mm[1] - CY) + 16); el(svg, "text", { x: o[0] - 12, y: o[1] + 4, class: "s" }, "~33\""); }
+    }
+  }
+  // iris at the centre, fed from S8's centre end
+  el(svg, "circle", { cx: CX, cy: CY, r: 4.69 * S, fill: "#fff", stroke: "#bbb", "stroke-width": 1 });
+  el(svg, "circle", { cx: CX, cy: CY, r: 3.35 * S, fill: "none", stroke: "#111", "stroke-width": 4 });
+  const s8 = toward(V[7], rIn);
+  el(svg, "line", { x1: s8[0], y1: s8[1], x2: CX - 3.35 * S * 0.7, y2: CY - 3.35 * S * 0.7, stroke: "#111", "stroke-width": 1.8, "stroke-dasharray": "6 4", "marker-end": "url(#ak)" });
+  // feed into S1 from the box
+  const s1 = toward(V[0], rIn);
+  el(svg, "line", { x1: s1[0] - 70, y1: s1[1] - 40, x2: s1[0] - 4, y2: s1[1] - 2, stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" });
+  el(svg, "text", { x: s1[0] - 150, y: s1[1] - 46 }, "line 3 DIN (box)");
+  // legend
+  const L = 680;
+  el(svg, "text", { x: L, y: 70, class: "t" }, "Belly spokes + iris, data line 3");
+  [["var(--s3)", "S1–S5 cut from RGB 3"], ["var(--s4)", "S6–S8 cut from RGB 4"]].forEach(([c, t], i) => { el(svg, "rect", { x: L, y: 88 + i * 22, width: 26, height: 8, fill: c }); el(svg, "text", { x: L + 34, y: 96 + i * 22 }, t); });
+  el(svg, "line", { x1: L, y1: 140, x2: L + 26, y2: 140, stroke: "#111", "stroke-width": 1.8, "stroke-dasharray": "6 4" }); el(svg, "text", { x: L + 34, y: 144 }, "3-core jumper (5 V · GND · data)");
+  el(svg, "line", { x1: L, y1: 162, x2: L + 26, y2: 162, stroke: "var(--data)", "stroke-width": 2, "marker-end": "url(#ad)" }); el(svg, "text", { x: L + 34, y: 166 }, "data direction");
+  const lines = ["56 LEDs per spoke, 448 in all, then the",
+    "241-LED iris disc at the centre (689 on line 3).",
+    "",
+    "Odd spokes run centre → edge, even spokes",
+    "edge → centre. Wire jumpers close the gaps:",
+    "  4 along the edge   S1→S2  S3→S4  S5→S6  S7→S8",
+    "                     about 33\" each",
+    "  3 across the hub   S2→S3  S4→S5  S6→S7",
+    "                     about 5\" each",
+    "  1 into the iris    S8 → iris, about 7\"",
+    "",
+    "The jumper's 5 V and GND carry power on;",
+    "spoke power still taps in at the centre ends."];
+  lines.forEach((t, i) => el(svg, "text", { x: L, y: 200 + i * 18, class: "s" }, t));
+})();
+</script>
+</body>
+</html>

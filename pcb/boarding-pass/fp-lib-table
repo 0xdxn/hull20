@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Pass")(type "KiCad")(uri "${KIPRJMOD}/Pass.pretty")(options "")(descr "Boarding pass footprints"))
+)

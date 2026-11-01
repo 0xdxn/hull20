@@ -1,0 +1,30 @@
+# secrets: never commit
+firmware/ufo-show/Secrets.h
+firmware/ufo-show/BuildId.h
+**/Secrets.h
+.env
+.env.*
+*.pem
+*.key
+
+# build output
+build/
+*.bin
+*.elf
+*.map
+flash-count
+sim/node_modules/
+sim/index.html
+node_modules/
+
+# KiCad local state
+*.kicad_prl
+*-backups/
+fp-info-cache
+\#auto_saved_files#
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+__pycache__/

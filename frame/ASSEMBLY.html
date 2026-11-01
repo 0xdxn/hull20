@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UFO frame: putting it together</title>
+<style>
+  @page { size: letter; margin: 12mm; }
+  body { margin: 0 auto; max-width: 860px; padding: 20px 18px 40px; background: #fbf8f1; color: #16181d;
+         font: 17px/1.5 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  h1 { font: 700 30px/1.15 Georgia, "Times New Roman", serif; margin: 0 0 4px; }
+  .sub { color: #555; margin: 0 0 18px; }
+  h2 { font: 700 21px/1.2 Georgia, serif; margin: 30px 0 8px; padding-top: 14px; border-top: 2px solid #16181d; }
+  h3 { font: 700 20px/1.2 Georgia, serif; margin: 0 0 6px; }
+  h3 .num { font: 700 20px ui-monospace, Menlo, monospace; display: inline-block; min-width: 1.3em; }
+  h3 .j { font: 14px ui-monospace, Menlo, monospace; color: #555; margin-left: 6px; }
+  ul { padding-left: 22px; margin: 6px 0; } li { margin: 5px 0; }
+  p { margin: 6px 0; }
+  .step { display: grid; grid-template-columns: 300px 1fr; gap: 18px; border-top: 1px solid #d8d2c4; padding: 16px 0; break-inside: avoid; }
+  @media (max-width: 640px) { .step { grid-template-columns: 1fr; } .fig { max-width: 340px; } }
+  svg.plan { width: 100%; height: auto; display: block; }
+  .sidev { grid-column: 1 / -1; } svg.side { width: 100%; height: auto; display: block; }
+  svg .g { fill: #0b6e4f; font-weight: 700; } .zcap { font-size: 12px; color: #555; margin: 8px 0 0; text-transform: uppercase; letter-spacing: .06em; }
+  svg .t { font: 12px -apple-system, Helvetica, Arial, sans-serif; fill: #16181d; }
+  svg .xs { font-size: 9px; fill: #555; }
+  .chk { border-left: 4px solid #2a2d33; padding-left: 10px; }
+  .hw { font-size: 15px; color: #333; }
+  .warn { border-left: 5px solid #c2410c; background: #fff1e6; padding: 10px 14px; margin: 14px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; margin: 8px 0; }
+  th, td { text-align: left; padding: 6px 7px; border-bottom: 1px solid #d8d2c4; vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: #555; }
+  td.n { font: 700 15px ui-monospace, Menlo, monospace; white-space: nowrap; }
+  .key span { margin-right: 18px; } .sw { display:inline-block; width: 22px; height: 5px; vertical-align: 3px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<h1>UFO frame: putting it together</h1>
+<p class="sub">The build in order, from the frame plan (FRAME-2020.html, build order and joints J1 to J12). Drawings are from above, B1 pointing right, numbered counter-clockwise. Holes come from DRILL-TAP.</p>
+<p class="key"><span><span class="sw" style="background:#c2410c"></span>this step</span><span><span class="sw" style="background:#2a2d33"></span>already built</span></p>
+<div class="warn"><b>Every M6:</b> a drop of blue Loctite 243 (not on the temporary hub-ring screws). Snug everything in a step first, check it, then tighten. Hex keys: 4 mm (M6 socket and button heads), 3 mm (M5 flat-heads).</div>
+
+<h2>What the D (core ring) holes are for</h2>
+<table>
+<tr><th>Hole</th><th>Which D</th><th>Joint</th><th>What goes through it</th></tr>
+<tr><td class="n">68.9</td><td>all 8</td><td>J3</td><td>M6 × 40 from inside the ring into the spoke's IN end: it's what holds each spoke to the centre</td></tr>
+<tr><td class="n">29</td><td>all 8 (drilled on all)</td><td>J8, J11</td><td>D2, D4, D6, D8: M6 × 40 down into a plate leg (the legs carry the centre plate, beam pod, iris). D1 and D5: one box-rail bolt each (step 7). D3 and D7: spare, leave empty</td></tr>
+<tr><td class="n">≈ 45, both ends</td><td>all 8</td><td>J7</td><td>the 135° corner brackets that make the eight D pieces one ring</td></tr>
+<tr><td class="n">rail holes</td><td>D1, D5</td><td>J11</td><td>M6 × 50 + nylock through each box rail (the box sits on the two rails): one end of each rail uses the existing 29 hole, the other is drilled at assembly</td></tr>
+</table>
+
+<h2>Steps</h2>
+<section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#c2410c" stroke-width="2.7"  stroke-linejoin="miter"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">1</span> Rim octagon <span class="j">J1 × 8</span></h3>
+<p>The eight A rims on the floor, countersunk 450 holes facing <b>out</b>. Each corner: inner corners touching, 135° bracket on the inner faces, 2 × M5 × 35 flat-head from outside + nylock (Corners section of DRILL-TAP).</p>
+<p class="chk">Check: flat on the floor, and across the flats (outside to outside) the same three ways: <b>2213 mm (87⅛ in)</b>.</p>
+<p class="hw"><b>Hardware:</b> 16 × M5 × 35 flat-head, 16 × M5 nylock, 8 brackets</p>
+</div>
+<div class="sidev"></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#c2410c" stroke-width="2.7"  stroke-linejoin="miter"/>
+</svg><p class="zcap">Core ring, closer</p><svg viewBox="0 0 320 320" class="plan" role="img">
+<polygon points="254.5,120.9 199.1,65.5 120.9,65.5 65.5,120.9 65.5,199.1 120.9,254.5 199.1,254.5 254.5,199.1" fill="none" stroke="#c2410c" stroke-width="10.7"  stroke-linejoin="miter"/>
+<text x="228.6" y="164.0" class="t sm" text-anchor="middle">D1</text>
+<text x="208.5" y="115.5" class="t sm" text-anchor="middle">D2</text>
+<text x="160.0" y="95.4" class="t sm" text-anchor="middle">D3</text>
+<text x="111.5" y="115.5" class="t sm" text-anchor="middle">D4</text>
+<text x="91.4" y="164.0" class="t sm" text-anchor="middle">D5</text>
+<text x="111.5" y="212.5" class="t sm" text-anchor="middle">D6</text>
+<text x="160.0" y="232.6" class="t sm" text-anchor="middle">D7</text>
+<text x="208.5" y="212.5" class="t sm" text-anchor="middle">D8</text>
+</svg></div>
+<div class="txt">
+<h3><span class="num">2</span> Core ring <span class="j">J7 × 8</span></h3>
+<p>The eight D pieces into the small octagon the same way. All eight have the 29 mm hole now, so any piece can go anywhere: number them D1 to D8 going round as you fit them. Turn each so its 29 hole is <b>on top</b> and its dot end points the same way round (<b>clockwise</b> from above). That puts the extra holes on D1 and D5 exactly where the box rails need them (step 7).</p>
+<p class="chk">Check: outside across the flats <b>≈ 373 mm</b> (what the H rails were cut to), all four ways.</p>
+<p class="hw"><b>Hardware:</b> 16 × M5 × 35 flat-head, 16 × M5 nylock, 8 brackets</p>
+</div>
+<div class="sidev"></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#c2410c" stroke-width="2.7"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#c2410c" stroke-width="2.7"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#c2410c" stroke-width="2.7"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#c2410c" stroke-width="2.7"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#c2410c" stroke-width="2.7"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#c2410c" stroke-width="2.7"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#c2410c" stroke-width="2.7"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#c2410c" stroke-width="2.7"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+</svg></div>
+<div class="txt">
+<h3><span class="num">3</span> Spokes <span class="j">J2 + J3, × 8</span></h3>
+<p>Each spoke runs from a rim mid-side to a core-ring mid-side, <b>IN</b> end at the core ring, B1 to D1, B2 to D2 and so on. All spoke holes (186, 558, 754) on <b>top</b>.</p>
+<ul>
+<li><b>Outer end (J2):</b> M6 × 40 <i>flat-head</i> from outside the rim, through the countersunk 450 hole, into the spoke's tapped end. Sits flush; LED line A covers it.</li>
+<li><b>Inner end (J3):</b> M6 × 40 socket-head from <i>inside</i> the core ring, through the 68.9 hole, into the spoke's IN end. The head sits between the two bracket legs.</li>
+</ul>
+<p class="chk">Check: rim and spokes flush on top; the frame sits flat with no rock. Do opposite spokes first (B1 + B5, B3 + B7), then the rest.</p>
+<p class="hw"><b>Hardware:</b> 8 × M6 × 40 flat-head, 8 × M6 × 40 socket-head</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<line x1="639.2" y1="123.6" x2="613.8" y2="123.6" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="606.8,123.6 616.8,128.6 616.8,118.6" fill="#0b6e4f"/>
+<text x="639.2" y="109.6" class="t sm g" text-anchor="end">J2 flat-head, from outside</text>
+<line x1="168.4" y1="123.6" x2="186.2" y2="123.6" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="193.2,123.6 183.2,118.6 183.2,128.6" fill="#0b6e4f"/>
+<text x="146.4" y="109.6" class="t sm g" text-anchor="start">J3, from inside the ring</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+</svg></div>
+<div class="txt">
+<h3><span class="num">4</span> Hub posts <span class="j">J4 × 8</span></h3>
+<p>One E post (142) standing up on each spoke at the 186 hole. M6 × 40 <b>up</b> through the spoke from underneath into the post's tapped bottom end.</p>
+<p class="chk">Check: posts vertical and the same way round.</p>
+<p class="hw"><b>Hardware:</b> 8 × M6 × 40 socket-head</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<line x1="283.8" y1="150.0" x2="283.8" y2="135.0" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="283.8,128.0 278.8,138.0 288.8,138.0" fill="#0b6e4f"/>
+<text x="283.8" y="163.0" class="t sm g" text-anchor="middle">J4 up through the spoke</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+<polygon points="239.6,169.4 210.6,140.4 169.4,140.4 140.4,169.4 140.4,210.6 169.4,239.6 210.6,239.6 239.6,210.6" fill="none" stroke="#c2410c" stroke-width="2.7"  stroke-linejoin="miter"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">5</span> Hub ring <span class="j">J6 × 8, J5 temporary</span></h3>
+<p>Build the eight C pieces into an octagon (brackets as before), then set it on the posts: each C's centre 150 hole over a post.</p>
+<p><b>For now:</b> one M6 × 40 down through each 150 hole into the post's top (spares from the third pack). <b>Later</b>, when the deck plate goes on over the mesh, each one is swapped for the M6 × 50 that goes through the deck too (J5).</p>
+<p class="hw"><b>Hardware:</b> 16 × M5 × 35 flat-head, 16 nylocks, 8 brackets; 8 × M6 × 40 (temporary)</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="47.9" width="8.8" height="8.8" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<line x1="283.8" y1="26.8" x2="283.8" y2="40.9" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="283.8,47.9 288.8,37.9 278.8,37.9" fill="#0b6e4f"/>
+<text x="283.8" y="21.8" class="t sm g" text-anchor="middle">J5 down (temporary M6 × 40)</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="286.0" y="186.8" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="116.6" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="87.6" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="116.6" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="87.6" y="186.8" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="257.0" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="286.0" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="257.0" width="6.4" height="6.4" fill="#c2410c"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+<polygon points="239.6,169.4 210.6,140.4 169.4,140.4 140.4,169.4 140.4,210.6 169.4,239.6 210.6,239.6 239.6,210.6" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">6</span> Porthole posts <span class="j">J10 × 8</span></h3>
+<p>One K post (60) on each spoke at the 558 hole. M6 × 40 <b>up</b> through the spoke into the post. The porthole plates go on later (M6 × 25 down through the plate).</p>
+<p class="hw"><b>Hardware:</b> 8 × M6 × 40 socket-head</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="47.9" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="443.1" y="92.8" width="8.8" height="26.4" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<line x1="447.5" y1="150.0" x2="447.5" y2="135.0" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="447.5,128.0 442.5,138.0 452.5,138.0" fill="#0b6e4f"/>
+<text x="447.5" y="163.0" class="t sm g" text-anchor="middle">J10 up through the spoke</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="286.0" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="87.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="87.6" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="286.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+<polygon points="239.6,169.4 210.6,140.4 169.4,140.4 140.4,169.4 140.4,210.6 169.4,239.6 210.6,239.6 239.6,210.6" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="165.2" y1="184.7" x2="214.8" y2="184.7" stroke="#c2410c" stroke-width="2.7"/>
+<line x1="165.2" y1="195.3" x2="214.8" y2="195.3" stroke="#c2410c" stroke-width="2.7"/>
+</svg><p class="zcap">Core ring, closer</p><svg viewBox="0 0 320 320" class="plan" role="img">
+<polygon points="254.5,120.9 199.1,65.5 120.9,65.5 65.5,120.9 65.5,199.1 120.9,254.5 199.1,254.5 254.5,199.1" fill="none" stroke="#2a2d33" stroke-width="10.7"  stroke-linejoin="miter"/>
+<line x1="259.8" y1="160.0" x2="304.6" y2="160.0" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="228.6" y="164.0" class="t sm" text-anchor="middle">D1</text>
+<line x1="230.6" y1="89.4" x2="262.3" y2="57.7" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="208.5" y="115.5" class="t sm" text-anchor="middle">D2</text>
+<line x1="160.0" y1="60.2" x2="160.0" y2="15.4" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="160.0" y="95.4" class="t sm" text-anchor="middle">D3</text>
+<line x1="89.4" y1="89.4" x2="57.7" y2="57.7" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="111.5" y="115.5" class="t sm" text-anchor="middle">D4</text>
+<line x1="60.2" y1="160.0" x2="15.4" y2="160.0" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="91.4" y="164.0" class="t sm" text-anchor="middle">D5</text>
+<line x1="89.4" y1="230.6" x2="57.7" y2="262.3" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="111.5" y="212.5" class="t sm" text-anchor="middle">D6</text>
+<line x1="160.0" y1="259.8" x2="160.0" y2="304.6" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="160.0" y="232.6" class="t sm" text-anchor="middle">D7</text>
+<line x1="230.6" y1="230.6" x2="262.3" y2="262.3" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="208.5" y="212.5" class="t sm" text-anchor="middle">D8</text>
+<line x1="60.2" y1="138.6" x2="259.8" y2="138.6" stroke="#c2410c" stroke-width="10.7"/>
+<line x1="60.2" y1="181.4" x2="259.8" y2="181.4" stroke="#c2410c" stroke-width="10.7"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">7</span> Box rails <span class="j">J11 × 2</span></h3>
+<p>The two H rails (373) lie across the top of the core ring, from D5 to D1, <b>39.9 mm either side of the centre</b> (79.8 mm apart), ends flush with the ring's outside faces. Not 50: at 50 every rail hole would land 10 mm from the extra 29 mm hole. At 39.9 the extra holes <i>are</i> rail holes.</p>
+<ul>
+<li>Each rail uses one hole that's already there: the 29 hole on D1 for one rail, the 29 hole on D5 for the other (they sit on opposite sides because the dot ends all point clockwise).</li>
+<li>Set the rail over the existing hole and drill 6.5 mm down through the rail, using the hole in the ring as the guide. At its other end, drill straight down through rail and ring together, <b>10 mm from the rail end</b> (rail centred on the D bar). That end's hole is 29 mm from the D's other end: 2 new ring holes in all.</li>
+<li>Before drilling, check the bit clears the corner-bracket bolts inside the ring; slide the rail a few mm if not.</li>
+<li>M6 × 50 down through rail and ring, nylock underneath.</li>
+</ul>
+<p class="hw"><b>Hardware:</b> 4 × M6 × 50 button-head, 4 × M6 nylock</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="110.4" width="164.0" height="8.8" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="47.9" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="443.1" y="92.8" width="8.8" height="26.4" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<line x1="197.6" y1="88.4" x2="197.6" y2="103.4" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="197.6,110.4 202.6,100.4 192.6,100.4" fill="#0b6e4f"/>
+<text x="192.6" y="85.8" class="t sm g" text-anchor="end">J11 M6 × 50 down, nylock under</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="220.5,177.4 202.6,159.5 177.4,159.5 159.5,177.4 159.5,202.6 177.4,220.5 202.6,220.5 220.5,202.6" fill="none" stroke="#c2410c" stroke-width="2.2" stroke-dasharray="5 4" stroke-linejoin="miter"/>
+<circle cx="190.0" cy="190.0" r="16.1" fill="none" stroke="#c2410c" stroke-dasharray="3 3" stroke-width="1.5"/>
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="286.0" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="87.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="87.6" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="286.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+<polygon points="239.6,169.4 210.6,140.4 169.4,140.4 140.4,169.4 140.4,210.6 169.4,239.6 210.6,239.6 239.6,210.6" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<rect x="199.3" y="166.0" width="6.4" height="6.4" fill="#c2410c"/>
+<rect x="166.0" y="174.3" width="6.4" height="6.4" fill="#c2410c"/>
+<rect x="174.3" y="207.6" width="6.4" height="6.4" fill="#c2410c"/>
+<rect x="207.6" y="199.3" width="6.4" height="6.4" fill="#c2410c"/>
+<line x1="165.2" y1="184.7" x2="214.8" y2="184.7" stroke="#2a2d33" stroke-width="2.7"/>
+<line x1="165.2" y1="195.3" x2="214.8" y2="195.3" stroke="#2a2d33" stroke-width="2.7"/>
+</svg><p class="zcap">Core ring, closer</p><svg viewBox="0 0 320 320" class="plan" role="img">
+<polygon points="282.5,109.3 210.7,37.5 109.3,37.5 37.5,109.3 37.5,210.7 109.3,282.5 210.7,282.5 282.5,210.7" fill="none" stroke="#c2410c" stroke-width="3.2" stroke-dasharray="5 4" stroke-linejoin="miter"/>
+<circle cx="160.0" cy="160.0" r="64.6" fill="none" stroke="#c2410c" stroke-dasharray="3 3" stroke-width="1.5"/>
+<polygon points="254.5,120.9 199.1,65.5 120.9,65.5 65.5,120.9 65.5,199.1 120.9,254.5 199.1,254.5 254.5,199.1" fill="none" stroke="#2a2d33" stroke-width="10.7"  stroke-linejoin="miter"/>
+<line x1="259.8" y1="160.0" x2="304.6" y2="160.0" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="228.6" y="164.0" class="t sm" text-anchor="middle">D1</text>
+<line x1="230.6" y1="89.4" x2="262.3" y2="57.7" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="208.5" y="115.5" class="t sm" text-anchor="middle">D2</text>
+<line x1="160.0" y1="60.2" x2="160.0" y2="15.4" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="160.0" y="95.4" class="t sm" text-anchor="middle">D3</text>
+<line x1="89.4" y1="89.4" x2="57.7" y2="57.7" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="111.5" y="115.5" class="t sm" text-anchor="middle">D4</text>
+<line x1="60.2" y1="160.0" x2="15.4" y2="160.0" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="91.4" y="164.0" class="t sm" text-anchor="middle">D5</text>
+<line x1="89.4" y1="230.6" x2="57.7" y2="262.3" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="111.5" y="212.5" class="t sm" text-anchor="middle">D6</text>
+<line x1="160.0" y1="259.8" x2="160.0" y2="304.6" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="160.0" y="232.6" class="t sm" text-anchor="middle">D7</text>
+<line x1="230.6" y1="230.6" x2="262.3" y2="262.3" stroke="#2a2d33" stroke-width="10.7"/>
+<text x="208.5" y="212.5" class="t sm" text-anchor="middle">D8</text>
+<rect x="203.3" y="69.6" width="13.7" height="13.7" fill="#c2410c"/>
+<rect x="69.6" y="103.0" width="13.7" height="13.7" fill="#c2410c"/>
+<rect x="103.0" y="236.6" width="13.7" height="13.7" fill="#c2410c"/>
+<rect x="236.6" y="203.3" width="13.7" height="13.7" fill="#c2410c"/>
+<line x1="60.2" y1="138.6" x2="259.8" y2="138.6" stroke="#2a2d33" stroke-width="10.7"/>
+<line x1="60.2" y1="181.4" x2="259.8" y2="181.4" stroke="#2a2d33" stroke-width="10.7"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">8</span> Centre plate <span class="j">J8 × 4</span></h3>
+<p>Four F legs (90) hang under D2, D4, D6, D8: M6 × 40 <b>down</b> through each 29 mm hole into the leg's tapped top. Then the ½ in centre plate (18 in octagon, 9½ in beam port) under the legs: M6 × 25 <b>up</b> through the plate into each leg.</p>
+<p class="hw"><b>Hardware:</b> 4 × M6 × 40 socket-head, 4 × M6 × 25 button-head + fender washers</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="173.1" y="167.6" width="47.5" height="5.6" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<rect x="19.4" y="167.6" width="47.5" height="5.6" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<rect x="193.2" y="128.0" width="8.8" height="39.6" fill="#c2410c" stroke="#c2410c" stroke-width="1.2"/>
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="110.4" width="164.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="47.9" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="443.1" y="92.8" width="8.8" height="26.4" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<line x1="197.6" y1="101.6" x2="197.6" y2="112.2" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="197.6,119.2 202.6,109.2 192.6,109.2" fill="#0b6e4f"/>
+<text x="192.6" y="99.0" class="t sm g" text-anchor="end">J8 down into the leg</text>
+<line x1="197.6" y1="194.0" x2="197.6" y2="180.2" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="197.6,173.2 192.6,183.2 202.6,183.2" fill="#0b6e4f"/>
+<text x="208.0" y="184.3" class="t sm g" text-anchor="start">M6 × 25 up through the plate</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section><section class="step">
+<div class="fig"><svg viewBox="0 0 380 380" class="plan" role="img">
+<polygon points="220.5,177.4 202.6,159.5 177.4,159.5 159.5,177.4 159.5,202.6 177.4,220.5 202.6,220.5 220.5,202.6" fill="none" stroke="#2a2d33" stroke-width="2.2" stroke-dasharray="5 4" stroke-linejoin="miter"/>
+<circle cx="190.0" cy="190.0" r="16.1" fill="none" stroke="#2a2d33" stroke-dasharray="3 3" stroke-width="1.5"/>
+<polygon points="336.2,129.5 250.5,43.8 129.5,43.8 43.8,129.5 43.8,250.5 129.5,336.2 250.5,336.2 336.2,250.5" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<polygon points="213.5,180.3 199.7,166.5 180.3,166.5 166.5,180.3 166.5,199.7 180.3,213.5 199.7,213.5 213.5,199.7" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<line x1="214.8" y1="190.0" x2="334.8" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="236.4" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="286.0" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<circle cx="323.4" cy="190.0" r="5" fill="#fbf8f1" stroke="#c2410c" stroke-width="2.5"/>
+<text x="354.0" y="194.0" class="t sm" text-anchor="middle">B1</text>
+<line x1="207.6" y1="172.4" x2="292.4" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="78.0" class="t sm" text-anchor="middle">B2</text>
+<line x1="190.0" y1="165.2" x2="190.0" y2="45.2" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="137.2" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="87.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<circle cx="190.0" cy="56.6" r="5" fill="#fbf8f1" stroke="#c2410c" stroke-width="2.5"/>
+<text x="190.0" y="30.0" class="t sm" text-anchor="middle">B3</text>
+<line x1="172.4" y1="172.4" x2="87.6" y2="87.6" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="151.7" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="116.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="78.0" class="t sm" text-anchor="middle">B4</text>
+<line x1="165.2" y1="190.0" x2="45.2" y2="190.0" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="137.2" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="87.6" y="186.8" width="6.4" height="6.4" fill="#2a2d33"/>
+<circle cx="56.6" cy="190.0" r="5" fill="#fbf8f1" stroke="#c2410c" stroke-width="2.5"/>
+<text x="26.0" y="194.0" class="t sm" text-anchor="middle">B5</text>
+<line x1="172.4" y1="207.6" x2="87.6" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="151.7" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="116.6" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="74.0" y="310.0" class="t sm" text-anchor="middle">B6</text>
+<line x1="190.0" y1="214.8" x2="190.0" y2="334.8" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="186.8" y="236.4" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="186.8" y="286.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<circle cx="190.0" cy="323.4" r="5" fill="#fbf8f1" stroke="#c2410c" stroke-width="2.5"/>
+<text x="190.0" y="358.0" class="t sm" text-anchor="middle">B7</text>
+<line x1="207.6" y1="207.6" x2="292.4" y2="292.4" stroke="#2a2d33" stroke-width="2.7"/>
+<rect x="221.9" y="221.9" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="257.0" y="257.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<text x="306.0" y="310.0" class="t sm" text-anchor="middle">B8</text>
+<polygon points="239.6,169.4 210.6,140.4 169.4,140.4 140.4,169.4 140.4,210.6 169.4,239.6 210.6,239.6 239.6,210.6" fill="none" stroke="#2a2d33" stroke-width="2.7"  stroke-linejoin="miter"/>
+<rect x="199.3" y="166.0" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="166.0" y="174.3" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="174.3" y="207.6" width="6.4" height="6.4" fill="#2a2d33"/>
+<rect x="207.6" y="199.3" width="6.4" height="6.4" fill="#2a2d33"/>
+<line x1="165.2" y1="184.7" x2="214.8" y2="184.7" stroke="#2a2d33" stroke-width="2.7"/>
+<line x1="165.2" y1="195.3" x2="214.8" y2="195.3" stroke="#2a2d33" stroke-width="2.7"/>
+</svg></div>
+<div class="txt">
+<h3><span class="num">9</span> Lift points <span class="j">J12 × 4</span></h3>
+<p>On B1, B3, B5, B7, centred <b>814 mm from IN</b> (1000 mm from the centre): a 316 pad eye on top and one underneath, sharing two holes. Mark the holes from the pad eye, drill 6.5 mm, 2 × M6 × 40 straight through + nylocks. Rigging Fig 3 has the bridle.</p>
+<p class="hw"><b>Hardware:</b> 8 pad eyes, 8 × M6 × 40, 8 × M6 nylock</p>
+</div>
+<div class="sidev"><svg viewBox="0 0 720 222" class="side" role="img">
+<rect x="173.1" y="167.6" width="47.5" height="5.6" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="19.4" y="167.6" width="47.5" height="5.6" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="193.2" y="128.0" width="8.8" height="39.6" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="193.2" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="202.0" y="119.2" width="396.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="598.0" y="119.2" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="38.0" y="110.4" width="164.0" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="56.7" width="8.8" height="62.5" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="279.4" y="47.9" width="8.8" height="8.8" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<rect x="443.1" y="92.8" width="8.8" height="26.4" fill="#2a2d33" stroke="#2a2d33" stroke-width="1.2"/>
+<path d="M553.4,119.2 a6.6,10.6 0 0 1 13.2,0" fill="none" stroke="#c2410c" stroke-width="2.5"/>
+<path d="M553.4,128.0 a6.6,10.6 0 0 0 13.2,0" fill="none" stroke="#c2410c" stroke-width="2.5"/>
+<line x1="560.0" y1="97.2" x2="560.0" y2="107.8" stroke="#0b6e4f" stroke-width="2.4"/>
+<polygon points="560.0,114.8 565.0,104.8 555.0,104.8" fill="#0b6e4f"/>
+<text x="560.0" y="92.2" class="t sm g" text-anchor="middle">J12 2 × M6 × 40 through, nylocks</text>
+<text x="120.0" y="218.0" class="t xs" text-anchor="middle">centre</text>
+<line x1="120.0" y1="40.0" x2="120.0" y2="208" stroke="#bbb" stroke-dasharray="3 4"/>
+<text x="602.2" y="134.2" class="t xs" text-anchor="middle">rim</text>
+<text x="606.6" y="218.0" class="t xs" text-anchor="end">Side view along B1. Green arrows: this step's screws, the way they go in.</text>
+</svg></div>
+</section>
+
+<h2>After the frame</h2>
+<p>From the frame plan's build order: LED channels (line A on the rim, belly battens rim to plate), snag-proofing (file and tape the 16 outside corners, cap the 48 bolt tails, scrap-of-mesh test), belly sail into the rim's inner slot, aluminet into the rim's top slot, then the deck plate over the mesh on the hub ring (swap the 8 temporary screws for M6 × 50, J5), riser posts (J9, M6 × 25 up through the deck and down through the dome lip with fender washers), dome lip. Full show on the ground, then hang.</p>
+</body>
+</html>

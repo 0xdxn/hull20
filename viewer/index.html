@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UFO 2027 · the build, to scale</title>
+<link rel="stylesheet" href="viewer.css?v=11">
+</head>
+<body>
+<div id="stage"></div>
+<div id="labels"></div>
+<div id="tip" hidden></div>
+
+<aside id="panel">
+  <header>
+    <p class="kicker">HULL/20 · saucer · 2027 refit</p>
+    <h1>The build, to scale</h1>
+    <p id="dims" class="dims"></p>
+  </header>
+
+  <section>
+    <h2>Explode</h2>
+    <input id="explode" type="range" min="0" max="100" value="0" aria-label="Explode">
+    <div class="row">
+      <button id="btnExplode">Explode</button>
+      <button id="btnAssemble">Assemble</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Build order</h2>
+    <div class="row">
+      <button id="stepPrev" aria-label="Previous step">◀</button>
+      <span id="stepNum" class="step-num"></span>
+      <button id="stepNext" aria-label="Next step">▶</button>
+      <button id="stepAll">All</button>
+      <button id="stepPlay">Play</button>
+    </div>
+    <p id="stepText" class="step-text"></p>
+  </section>
+
+  <section>
+    <h2>View</h2>
+    <div class="row wrap">
+      <button data-view="iso">3D</button>
+      <button data-view="top">Top</button>
+      <button data-view="bottom">Belly</button>
+      <button data-view="side">Side</button>
+    </div>
+    <div class="row wrap checks">
+      <label><input id="optSection" type="checkbox"> Cut through a spoke</label>
+      <label><input id="optOrtho" type="checkbox"> No perspective</label>
+      <label><input id="optNight" type="checkbox"> Night</label>
+      <label><input id="optFrost" type="checkbox" checked> Frosted panels</label>
+      <label><input id="optSpin" type="checkbox"> Turn slowly</label>
+    </div>
+  </section>
+
+  <section>
+    <h2>Show</h2>
+    <ul id="layers" class="layers"></ul>
+  </section>
+
+  <section>
+    <h2>The new panels and plates</h2>
+    <p class="note">Click a row to show only that part on the frame.</p>
+    <table id="cutTable" class="cut"></table>
+  </section>
+
+  <footer>
+    <p>Every panel and plate is traced from its cut file. The frame follows FRAME-2020; the box, iris, porthole rings and bridle are approximate. 1 grid square = 1 ft.</p>
+  </footer>
+</aside>
+
+<div id="info" hidden></div>
+
+<script src="vendor/three.min.js"></script>
+<script src="vendor/OrbitControls.js"></script>
+<script src="vendor/RoomEnvironment.js"></script>
+<script src="geometry.js?v=11"></script>
+<script src="viewer.js?v=11"></script>
+</body>
+</html>
